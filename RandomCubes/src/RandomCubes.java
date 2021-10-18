@@ -2,17 +2,31 @@ import java.awt.*;
 
 public class RandomCubes {
 
-    public void cube(Graphics2D g2){
+    private final int num;
 
-        int[] xListSideOne = {};
-        int[] yListSideOne = {};
-        int[] xListSideTwo = {};
-        int[] yListSideTwo = {};
-        int[] xListSideThree = {};
-        int[] yListSideThree = {};
+    private final int xCord;
+    private final int yCord;
+    private final int yHeight;
+
+    public RandomCubes(int n, int x, int y, int yH) {
+        this.num = n;
+        this.xCord = x;
+        this.yCord = y;
+        this.yHeight = yH;
+    }
+
+
+    public void cube(Graphics2D g2) {
+
+        int[] xListSideOne;
+        int[] yListSideOne;
+        int[] xListSideTwo;
+        int[] yListSideTwo;
+        int[] xListSideThree;
+        int[] yListSideThree;
 
         Color blackRGB = new Color(58, 58, 61);
-        g2.setStroke(new BasicStroke(2));
+        g2.setStroke(new BasicStroke(1));
         //Color Palette
         Color frontCyan = new Color(104, 216, 254);
         Color sideCyan = new Color(120, 200, 236);
@@ -32,19 +46,19 @@ public class RandomCubes {
         int w = 11;
         int h = 10;
 
-        for (int i = 0; i < 300; i++) {
-            int x = (int)(Math.random()*400) + 150;
-            int y = (int)(Math.random() * 650) + 150;
-            int SF = (int)(Math.random()*6) + 1;
+        for (int i = 0; i < num; i++) {
+            int x = (int) (Math.random() * xCord) + 150;
+            int y = (int) (Math.random() * yCord) + yHeight;
+            int SF = (int) (Math.random() * 6) + 1;
 
 
-            int angle = (int)(Math.random() * 360) + 1;
+            int angle = (int) (Math.random() * 360) + 1;
 
-            g2.translate(x+(SF * w)/2,    y+(SF * h)/2);
+            g2.translate(x + (SF * w) / 2, y + (SF * h) / 2);
             g2.rotate(Math.toDegrees(angle));
 
-            int x1 = -(SF * w)/2;
-            int y1 = -(SF * h)/2;
+            int x1 = -(SF * w) / 2;
+            int y1 = -(SF * h) / 2;
 
             //Side One
             xListSideOne = new int[]{x1, x1, x1 + SF * (8), x1 + SF * (8)};
@@ -60,24 +74,20 @@ public class RandomCubes {
 
             Color randomColorFront;
             Color randomColorSide;
-            int randomColorGen = (int)(Math.random()*5)+1;
-            if (randomColorGen == 1){
+            int randomColorGen = (int) (Math.random() * 5) + 1;
+            if (randomColorGen == 1) {
                 randomColorFront = frontCyan;
                 randomColorSide = sideCyan;
-            }
-            else if (randomColorGen == 2){
+            } else if (randomColorGen == 2) {
                 randomColorFront = frontBlue;
                 randomColorSide = sideBlue;
-            }
-            else if (randomColorGen == 3){
+            } else if (randomColorGen == 3) {
                 randomColorFront = frontPurple;
                 randomColorSide = sidePurple;
-            }
-            else if (randomColorGen == 4){
+            } else if (randomColorGen == 4) {
                 randomColorFront = frontPink;
                 randomColorSide = sidePink;
-            }
-            else{
+            } else {
                 randomColorFront = frontTurquoise;
                 randomColorSide = sideTurquoise;
             }
@@ -97,12 +107,9 @@ public class RandomCubes {
             g2.drawPolygon(xListSideThree, yListSideThree, 4);
 
 
-
-
             g2.rotate(-Math.toDegrees(angle));
-            g2.translate(-(x+(SF * w)/2), -(y+(SF * h)/2));
+            g2.translate(-(x + (SF * w) / 2), -(y + (SF * h) / 2));
         }
-
 
 
     }
