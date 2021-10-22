@@ -7,7 +7,7 @@ public class Gradient {
         int blue = 232;
         int green = 232;
         int y = 0;
-
+        //Creates Gradient
         for (int i = 0; i < 200; i++) {
             blue -= 1;
             green -= 1;
